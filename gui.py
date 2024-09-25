@@ -3,7 +3,7 @@ from tkinter import filedialog, messagebox, scrolledtext, ttk
 import os
 
 
-def start_gui(handle_folder_upload):
+def start_gui(handle_folder_upload, handle_save_output):
     """
     Starts the Tkinter GUI and handles user interactions.
     """
@@ -33,6 +33,18 @@ def start_gui(handle_folder_upload):
             messagebox.showwarning("No folder selected", "Please select a folder containing PDF files.")
             status_label.config(text="No folder selected.")
 
+    def save_output():
+        # Ask the user for a directory to save the output files
+        save_folder_path = filedialog.askdirectory(
+            title="Choose a folder to save the output files"
+        )
+        if save_folder_path:
+            # Call the provided callback function to save the output as Excel, JSON, and Text
+            handle_save_output(save_folder_path)
+            messagebox.showinfo("Success", f"Files saved to {save_folder_path}")
+        else:
+            messagebox.showwarning("No folder selected", "Please select a folder to save the output files.")
+
     # Setup the GUI window
     root = tk.Tk()
     root.title("PDF Analyzer")
@@ -61,6 +73,11 @@ def start_gui(handle_folder_upload):
     # Output area to display the results
     output_text = scrolledtext.ScrolledText(main_frame, wrap=tk.WORD, width=100, height=25, font=("Courier", 10))
     output_text.pack(pady=10)
+
+    # Save button
+    save_button = tk.Button(main_frame, text="Save Output", command=save_output, font=("Helvetica", 12),
+                            bg="#4a90e2", fg="white", padx=10, pady=5)
+    save_button.pack(pady=10)
 
     # Status label for status updates
     status_label = tk.Label(main_frame, text="", font=("Helvetica", 10), bg="#f0f0f0", fg="#4a90e2")
