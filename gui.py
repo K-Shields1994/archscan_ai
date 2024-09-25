@@ -55,7 +55,7 @@ def start_gui(handle_folder_upload, handle_save_output):
         status_label.config(text="Processing complete.")
         messagebox.showinfo("Success", f"Files saved to {selected_output_folder}")
 
-    # Setup the GUI window
+    # Set up the GUI window
     root = tk.Tk()
     root.title("File Processor")
     root.geometry("900x700")

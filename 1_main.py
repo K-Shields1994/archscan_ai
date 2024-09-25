@@ -5,9 +5,24 @@ from model import MODEL_IDS
 from file_processing import process_folder
 from json_excel_utils import save_to_json, json_to_excel
 
+
+# Function to read Azure credentials from a text file
+def read_credentials(file_path):
+    credentials = {}
+    with open(file_path, 'r') as file:
+        for line in file:
+            key, value = line.strip().split(' = ')
+            credentials[key] = value.strip('"')
+    return credentials
+
+
+# Read credentials from the azure_credentials.txt file
+credentials_file_path = "/Volumes/SSD/python_projects/archscan_ai/azure_credentials.txt"
+credentials = read_credentials(credentials_file_path)
+
 # Azure Form Recognizer credentials
-endpoint = "https://as-lf-ai-01.cognitiveservices.azure.com/"
-api_key = "18ce006f0ac44579a36bfaf01653254c"
+endpoint = credentials["endpoint"]
+api_key = credentials["api_key"]
 
 # Initialize client
 client = DocumentAnalysisClient(endpoint=endpoint, credential=AzureKeyCredential(api_key))

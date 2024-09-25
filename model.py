@@ -2,10 +2,9 @@
 
 # Define the models here
 MODEL_IDS = {
-    #"Bulk-Training-AI-01": "Bulk-Training-AI-01",  # Existing model
-    "Georgetown_law_09242024": "Georgetown_law_09242024"
+    "Bulk-Training-AI-01": "Bulk-Training-AI-01",
+    "Georgetown_law_09242024": "Georgetown_law_09242024",
     # You can add more models in the future
-
 
 }
 

@@ -3,6 +3,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 import json
 
+
 def analyze_document(client, model_id, document_path):
     try:
         with open(document_path, "rb") as f:
