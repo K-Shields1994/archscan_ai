@@ -8,12 +8,12 @@ from json_excel_utils import save_to_json, json_to_excel
 
 # Function to read Azure credentials from a text file
 def read_credentials(file_path):
-    credentials = {}
+    ai_credentials = {}
     with open(file_path, 'r') as file:
         for line in file:
             key, value = line.strip().split(' = ')
-            credentials[key] = value.strip('"')
-    return credentials
+            ai_credentials[key] = value.strip('"')
+    return ai_credentials
 
 
 # Read credentials from the azure_credentials.txt file
@@ -49,8 +49,7 @@ def handle_folder_upload(input_folder_path, output_folder_path):
 
 
 # Function to handle saving the output in the selected folder
-def handle_save_output(output_folder_path):
-    # This function is no longer needed since the output folder is passed directly during processing
+def handle_save_output():
     pass
 
 
