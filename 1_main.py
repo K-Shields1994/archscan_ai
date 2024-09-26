@@ -19,7 +19,7 @@ def read_credentials(file_path):
 # Read credentials from the azure_credentials.txt file
 #TODO azure_credentials.txt will have varying file paths on different machines. 
 #What if we had a GUI screen that makes the user enter the endpoint and API key in order to use the File Processor?
-credentials_file_path = "/Volumes/SSD/python_projects/archscan_ai/azure_credentials.txt"
+credentials_file_path = "azure_credentials.txt"
 credentials = read_credentials(credentials_file_path)
 
 # Azure Form Recognizer credentials
