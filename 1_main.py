@@ -16,7 +16,7 @@ def read_credentials(file_path):
     return ai_credentials
 
 
-# Read credentials from the azure_credentials.txt file
+# Read credentials from the azure_credentials.txt file path
 credentials_file_path = "azure_credentials.txt"
 credentials = read_credentials(credentials_file_path)
 
