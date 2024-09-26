@@ -4,6 +4,7 @@
 MODEL_IDS = {
     "Bulk-Training-AI-01": "Bulk-Training-AI-01",
     "Georgetown_law_09242024": "Georgetown_law_09242024",
+    "prebuilt-read": "prebuilt-read"
     # You can add more models in the future
 
 }
