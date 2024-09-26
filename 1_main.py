@@ -17,7 +17,7 @@ def read_credentials(file_path):
 
 
 # Read credentials from the azure_credentials.txt file
-credentials_file_path = "/Volumes/SSD/python_projects/archscan_ai/azure_credentials.txt"
+credentials_file_path = "azure_credentials.txt"
 credentials = read_credentials(credentials_file_path)
 
 # Azure Form Recognizer credentials
