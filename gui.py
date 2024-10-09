@@ -5,6 +5,7 @@ from tkinter import filedialog, scrolledtext
 def run_gui(handle_process_function):
     root = tk.Tk()
     root.title("Document OCR Tool")
+    root.geometry("800x800")
 
     input_folder = None
     output_folder = None
