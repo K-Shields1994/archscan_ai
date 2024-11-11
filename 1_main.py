@@ -31,7 +31,7 @@ client = DocumentAnalysisClient(endpoint=endpoint, credential=AzureKeyCredential
 
 # Function to handle folder selection and processing
 def handle_folder_upload(input_folder_path, output_folder_path):
-    model_id = MODEL_IDS["prebuilt-read"]
+    model_id = MODEL_IDS["San Jose"]
 
     # Generate file paths dynamically based on the output folder
     json_file_path = os.path.join(output_folder_path, "document_results.json")

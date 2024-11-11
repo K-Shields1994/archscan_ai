@@ -1,6 +1,7 @@
 import os
 from azure.ai.formrecognizer import DocumentAnalysisClient
 from azure.core.credentials import AzureKeyCredential
+from azure.ai.documentintelligence import AnalyzeDocumentLROPoller
 
 
 def process_folder(client, model_id, input_folder, json_output_path, unsupported_log_path):

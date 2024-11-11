@@ -3,6 +3,7 @@
 # Define the models here
 MODEL_IDS = {
     "prebuilt-read": "prebuilt-read",
+    "San Jose": "Large_Format_2024_11_07"
     # You can add more models in the future
 
 }
