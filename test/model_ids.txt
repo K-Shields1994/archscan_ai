@@ -1,0 +1,7 @@
+"2024-11-07": "Large_Format_2024_11_07",
+"2024-10-30": "Large_Format_2024_10_30",
+"2024-10-18": "Large_Format_2024_10_18",
+"2024-10-10": "Large_Format_2024_10_10",
+"2024-10-09": "Large_Format_20241009",
+"Georgetown Law": "Georgetown_law_09242024",
+"Bulk Training Model": "Bulk-Training-AI-01"

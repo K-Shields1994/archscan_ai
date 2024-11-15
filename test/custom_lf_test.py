@@ -22,7 +22,7 @@ def read_credentials(file_path):
 
 
 # Read credentials from the azure_credentials.txt file
-credentials_file_path = "Q:/Archscan Programs/Utility Programs/AI Python/archscan_final/text_files/credentials.txt"  # Ensure this is correct
+credentials_file_path = "C:/Users/liams/ArchScan_Capture_Project/archscan_ai/archscan_final/text_files/credentials.txt"  # Ensure this is correct
 credentials = read_credentials(credentials_file_path)
 endpoint = credentials["endpoint"]
 key = credentials["key"]
@@ -32,7 +32,7 @@ client = DocumentAnalysisClient(endpoint=endpoint, credential=AzureKeyCredential
 
 
 # Function to read model IDs from a text file
-def get_model_ids_from_file(file_path="Q:/Archscan Programs/Utility Programs/AI Python/archscan_final/this_is_test_folder/model_ids.txt"):
+def get_model_ids_from_file(file_path="C:/Users/liams/ArchScan_Capture_Project/archscan_ai/test/model_ids.txt"):
     model_ids = []
     if not os.path.exists(file_path):
         print(f"Error: The file {file_path} does not exist.")
@@ -231,7 +231,7 @@ def start_gui(handle_folder_upload):
     selected_model_id = None
 
     # Populate model dropdown on GUI initialization
-    model_ids = get_model_ids_from_file("Q:/Archscan Programs/Utility Programs/AI Python/archscan_final/this_is_test_folder/model_ids.txt")
+    model_ids = get_model_ids_from_file("C:/Users/liams/ArchScan_Capture_Project/archscan_ai/test/model_ids.txt")
 
     # Show an alert if no models are retrieved
     if not model_ids:
