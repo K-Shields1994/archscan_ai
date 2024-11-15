@@ -1,10 +1,10 @@
 import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.formrecognizer import DocumentAnalysisClient
-from model import MODEL_IDS
-from file_processing import process_folder
-from json_excel_utils import save_to_json
-from gui import run_gui
+from archscan_ai.test.model import MODEL_IDS
+from archscan_ai.test.file_processing import process_folder
+from archscan_ai.test.json_excel_utils import save_to_json
+from archscan_ai.test.gui import run_gui
 
 
 # Function to read Azure credentials from a text file
