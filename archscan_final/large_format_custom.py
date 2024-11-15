@@ -18,7 +18,9 @@ MODEL_IDS = {
     "Large_Format_20241009": "Large_Format_20241009",
     "Large_Format_2024_10_10": "Large_Format_2024_10_10",
     "Large_Format_2024_10_18": "Large_Format_2024_10_18",
-    "Large_Format_2024_10_30": "Large_Format_2024_10_30"
+    "Large_Format_2024_10_30": "Large_Format_2024_10_30",
+    "Large_Format_2024_11_07": "Large_Format_2024_11_07",
+    "Large_Format_2024_11_15": "Large_Format_2024_11_15"
 }
 
 # Function to read Azure credentials from a text file
