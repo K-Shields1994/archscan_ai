@@ -275,17 +275,22 @@ def start_gui(handle_folder_upload):
     root.title("File Processor")
     root.geometry("900x700")
     root.configure(bg='#f0f0f0')
+    root.columnconfigure(0, weight=1)
 
     header_frame = tk.Frame(root, bg='#4a90e2', height=60)
     header_frame.grid(row=0, column=0, columnspan=2, sticky="ew")
+    header_frame.columnconfigure(0, weight=1)
     title_label = tk.Label(header_frame, text="File Processor", font=("Helvetica", 24, "bold"), fg='white',
                            bg='#4a90e2')
     title_label.grid(row=0, column=0, padx=10, pady=20)
+    title_label.columnconfigure(0, weight=1)
 
     main_frame = tk.Frame(root, bg='#f0f0f0')
     main_frame.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+    main_frame.columnconfigure(0, weight=1)
     button_frame = tk.Frame(main_frame, bg='#f0f0f0')
     button_frame.grid(row=0, column=0, pady=10)
+    button_frame.columnconfigure(0, weight=1)
 
     # Model selection dropdown
     model_label = tk.Label(button_frame, text="Select Model:", font=("Helvetica", 12), bg="#f0f0f0")
