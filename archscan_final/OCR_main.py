@@ -7,12 +7,19 @@ from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeOutputOption, AnalyzeResult
 
 # Load stop words from file
-STOP_WORDS_FILE_PATH = 'C:/Users/liams/ArchScan_Capture_Project/archscan_ai/archscan_final/text_files/stop_words.txt'
+STOP_WORDS_FILE_PATH = 'text_files/stop_words.txt'
 
 
 def load_stop_words(file_path):
-    with open(file_path, 'r') as f:
-        return set(line.strip().lower() for line in f)
+    """
+    Loads stop words from a file.
+    """
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return set(line.strip().lower() for line in f)
+    except FileNotFoundError:
+        messagebox.showerror("Error", f"Stop words file not found: {file_path}")
+        return set()
 
 
 STOP_WORDS = load_stop_words(STOP_WORDS_FILE_PATH)
@@ -49,11 +56,11 @@ def process_pdf(file_path, output_folder_path, client):
 
         # Save the JSON output
         result_json = result.as_dict()
-        with open(json_output_file, "w") as json_file:
-            json.dump(result_json, json_file, indent=4)
+        with open(json_output_file, "w", encoding="utf-8") as json_file:
+            json.dump(result_json, json_file, indent=4, ensure_ascii=False)
 
         # Extract and filter words, then save to a text file
-        with open(txt_output_file, "w") as text_file:
+        with open(txt_output_file, "w", encoding="utf-8") as text_file:
             for page in result_json.get("pages", []):
                 for line in page.get("lines", []):
                     content = line.get("content", "")
@@ -63,7 +70,35 @@ def process_pdf(file_path, output_folder_path, client):
 
         return f"Processed: {file_path}\n"
     except Exception as e:
-        return f"Failed to process {file_path}: {str(e)}\n"
+        error_message = f"Failed to process {file_path}: {str(e)}"
+        print(error_message)
+        return error_message + "\n"
+
+
+def filter_text_from_json(json_file_path, stop_words, output_txt_path):
+    """
+    Parses a JSON file, filters out stop words, and writes the cleaned text to a text file.
+    """
+    try:
+        # Load JSON file
+        with open(json_file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        filtered_text = []
+
+        # Process each page
+        for page in data.get("pages", []):
+            for line in page.get("lines", []):
+                content = line.get("content", "")
+                words = content.split()
+                filtered_words = [word for word in words if word.lower() not in stop_words]
+                filtered_text.append(" ".join(filtered_words))
+
+        # Write the filtered text to a file
+        with open(output_txt_path, 'w', encoding='utf-8') as f:
+            f.write("\n".join(filtered_text))
+    except Exception as e:
+        print(f"Error processing JSON file {json_file_path}: {e}")
 
 
 def handle_folder_upload(input_folder_path, output_folder_path):
@@ -72,6 +107,7 @@ def handle_folder_upload(input_folder_path, output_folder_path):
     """
     endpoint = "https://as-lf-ai-01.cognitiveservices.azure.com/"
     key = "18ce006f0ac44579a36bfaf01653254c"
+
     document_intelligence_client = DocumentIntelligenceClient(
         endpoint=endpoint, credential=AzureKeyCredential(key)
     )
@@ -90,7 +126,7 @@ def handle_folder_upload(input_folder_path, output_folder_path):
     return result_summary
 
 
-def start_gui(handle_folder_upload):
+def start_gui():
     selected_input_folder = None
     selected_output_folder = None
 
@@ -128,14 +164,14 @@ def start_gui(handle_folder_upload):
         messagebox.showinfo("Success", f"Files saved to {selected_output_folder}")
 
     root = tk.Tk()
-    root.title("OCR File Processor")
+    root.title("OCR and Text Filtering Tool")
     root.geometry("900x700")
     root.configure(bg='#f0f0f0')
 
     # Header Frame
     header_frame = tk.Frame(root, bg='#4a90e2', height=60)
     header_frame.grid(row=0, column=0, columnspan=2, sticky="ew")
-    title_label = tk.Label(header_frame, text="OCR File Processor", font=("Helvetica", 24, "bold"), fg='white',
+    title_label = tk.Label(header_frame, text="OCR and Text Filtering Tool", font=("Helvetica", 24, "bold"), fg='white',
                            bg='#4a90e2')
     title_label.grid(row=0, column=0, padx=10, pady=20)
 
@@ -189,4 +225,4 @@ def start_gui(handle_folder_upload):
 
 
 # Start the GUI
-start_gui(handle_folder_upload)
+start_gui()
