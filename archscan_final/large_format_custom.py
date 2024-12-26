@@ -246,41 +246,49 @@ def start_gui(handle_folder_upload):
     root.geometry("900x700")
     root.configure(bg='#f0f0f0')
 
-    #Header frame
-    header_frame = tk.Frame(root, bg='#4a90e2', height=60)
-    header_frame.grid(row=0, column=0, columnspan=2, sticky="ew")
-    title_label = tk.Label(header_frame, text="File Processor", font=("Helvetica", 24, "bold"), fg='white', bg='#4a90e2')
-    title_label.grid(row=0, column=0, padx=10, pady=20)
-
-    #Main frame
+    #Main frame 
     main_frame = tk.Frame(root, bg='#f0f0f0')
-    main_frame.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+    main_frame.pack(expand=True, fill='both')
+
+    #Header frame
+    header_frame = tk.Frame(main_frame, bg='#4a90e2', height=60)
+    header_frame.pack(fill='x')
+    title_label = tk.Label(header_frame, text="File Processor", font=("Helvetica", 24, "bold"), fg='white', bg='#4a90e2')
+    title_label.pack(pady=10)
+
+    #Button frame
     button_frame = tk.Frame(main_frame, bg='#f0f0f0')
-    button_frame.grid(row=0, column=0, pady=10)
+    button_frame.pack(padx=10)
 
-    #Buttons and labels
-    upload_button = tk.Button(button_frame, text="Select Input Folder", command=upload_folder, font=("Helvetica", 12), bg="#4a90e2", fg="white", padx=10, pady=5)
-    upload_button.grid(row=0, column=0, padx=10)
+    #Input frame, button, and label
+    upload_frame = tk.Frame(button_frame, bg='#f0f0f0')
+    upload_frame.pack(side='left',padx=10)
+    upload_button = tk.Button(upload_frame, text="Select Input Folder", command=upload_folder, font=("Helvetica", 12), bg="#4a90e2", fg="white", padx=10, pady=5)
+    upload_button.pack(side='top', padx=10, pady=10)
+    folder_label = tk.Label(upload_frame, text="No input folder selected", font=("Helvetica", 12), bg="#f0f0f0")
+    folder_label.pack(side='top', padx=10)
 
-    output_button = tk.Button(button_frame, text="Select Output Folder", command=choose_output_folder, font=("Helvetica", 12), bg="#4a90e2", fg="white", padx=10, pady=5)
-    output_button.grid(row=0, column=1, padx=10)
-
-    folder_label = tk.Label(button_frame, text="No input folder selected", font=("Helvetica", 12), bg="#f0f0f0")
-    folder_label.grid(row=1, column=0, pady=5)
-
-    destination_label = tk.Label(button_frame, text="No output folder selected", font=("Helvetica", 12), bg="#f0f0f0")
-    destination_label.grid(row=1, column=1, pady=5)
-
+    #Output frame, button, and label
+    output_frame = tk.Frame(button_frame, bg='#f0f0f0')
+    output_frame.pack(side='left',padx=10)
+    output_button = tk.Button(output_frame, text="Select Output Folder", command=choose_output_folder, font=("Helvetica", 12), bg="#4a90e2", fg="white", padx=10, pady=5)
+    output_button.pack(side='top', padx=10, pady=10)
+    destination_label = tk.Label(output_frame, text="No output folder selected", font=("Helvetica", 12), bg="#f0f0f0")
+    destination_label.pack(side='top', padx=10)
+    
+    #Run frame, button, and label
+    run_frame = tk.Frame(button_frame, bg='#f0f0f0')
+    run_frame.pack(side='left',padx=10)
     run_button = tk.Button(button_frame, text="Run", command=run_process, font=("Helvetica", 12), bg="#4a90e2", fg="white", padx=10, pady=5)
-    run_button.grid(row=0, column=2, pady=10)
+    run_button.pack(side='top', padx=10, pady=10)
 
     #Output text
     output_text = scrolledtext.ScrolledText(main_frame, wrap=tk.WORD, width=100, height=25, font=("Courier", 10))
-    output_text.grid(row=4, column=0, pady=10)
+    output_text.pack(pady=10, expand=True, fill='both')
 
     #Status label
     status_label = tk.Label(main_frame, text="", font=("Helvetica", 10), bg="#f0f0f0", fg="#4a90e2")
-    status_label.grid(row=5, column=0, pady=5)
+    status_label.pack(pady=10)
 
     root.mainloop()
 
