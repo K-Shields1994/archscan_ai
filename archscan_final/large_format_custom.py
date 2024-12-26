@@ -240,21 +240,25 @@ def start_gui(handle_folder_upload):
 
         threading.Thread(target=background_task).start()
 
+    #Create GUI
     root = tk.Tk()
     root.title("File Processor")
     root.geometry("900x700")
     root.configure(bg='#f0f0f0')
 
+    #Header frame
     header_frame = tk.Frame(root, bg='#4a90e2', height=60)
     header_frame.grid(row=0, column=0, columnspan=2, sticky="ew")
     title_label = tk.Label(header_frame, text="File Processor", font=("Helvetica", 24, "bold"), fg='white', bg='#4a90e2')
     title_label.grid(row=0, column=0, padx=10, pady=20)
 
+    #Main frame
     main_frame = tk.Frame(root, bg='#f0f0f0')
     main_frame.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
     button_frame = tk.Frame(main_frame, bg='#f0f0f0')
     button_frame.grid(row=0, column=0, pady=10)
 
+    #Buttons and labels
     upload_button = tk.Button(button_frame, text="Select Input Folder", command=upload_folder, font=("Helvetica", 12), bg="#4a90e2", fg="white", padx=10, pady=5)
     upload_button.grid(row=0, column=0, padx=10)
 
@@ -270,9 +274,11 @@ def start_gui(handle_folder_upload):
     run_button = tk.Button(button_frame, text="Run", command=run_process, font=("Helvetica", 12), bg="#4a90e2", fg="white", padx=10, pady=5)
     run_button.grid(row=0, column=2, pady=10)
 
+    #Output text
     output_text = scrolledtext.ScrolledText(main_frame, wrap=tk.WORD, width=100, height=25, font=("Courier", 10))
     output_text.grid(row=4, column=0, pady=10)
 
+    #Status label
     status_label = tk.Label(main_frame, text="", font=("Helvetica", 10), bg="#f0f0f0", fg="#4a90e2")
     status_label.grid(row=5, column=0, pady=5)
 
